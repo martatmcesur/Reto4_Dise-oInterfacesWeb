@@ -3,7 +3,7 @@
 
 
 //El framework que usamos para crear el servidor HTTP y definir rutas
-
+const express = require('express');
 //Para poder usar layouts con .ejs (plantillas base) para no repetir HTML en cada vista
 const expressLayouts = require('express-ejs-layouts');
 
