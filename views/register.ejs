@@ -1,0 +1,59 @@
+<div class="row justify-content-center">
+  <div class="col-md-6 col-lg-5 col-xl-4">
+    <div class="card shadow-lg border-0 rounded-4 p-4 p-md-5 mt-5">
+      <div class="text-center mb-4">
+        <div class="bg-gradient rounded-circle mx-auto mb-3 p-4" 
+             style="width: 100px; height: 100px; background: linear-gradient(135deg, #667eea, #764ba2);">
+          <i class="bi bi-person-plus display-6 text-white"></i>
+        </div>
+        <h1 class="h3 fw-bold mb-1">Crea tu cuenta</h1>
+        <p class="text-muted mb-0">Únete a GameHub gratis</p>
+      </div>
+
+      <form action="/register" method="post">
+        <div class="mb-4">
+          <label class="form-label fw-500 mb-2">
+            <i class="bi bi-person me-2 text-muted"></i>Usuario
+          </label>
+          <input type="text" 
+                 name="usuario" 
+                 class="form-control form-control-lg" 
+                 placeholder="Tu nombre de usuario"
+                 required 
+                 autocomplete="username">
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label fw-500 mb-2">
+            <i class="bi bi-lock me-2 text-muted"></i>Contraseña
+          </label>
+          <input type="password" 
+                 name="password" 
+                 class="form-control form-control-lg" 
+                 placeholder="Crea una contraseña"
+                 required 
+                 autocomplete="new-password"
+                 minlength="4">
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg w-100 mb-3 fw-500">
+          <i class="bi bi-check-circle me-2"></i>Crear cuenta
+        </button>
+      </form>
+
+      <div class="text-center">
+        <hr class="my-4">
+        <p class="text-muted mb-0">¿Ya tienes cuenta?</p>
+        <a href="/login" class="btn btn-outline-primary btn-lg w-100 mt-2">
+          <i class="bi bi-box-arrow-in-right me-2"></i>Iniciar sesión
+        </a>
+      </div>
+    </div>
+
+    <div class="text-center mt-4">
+      <a href="/" class="btn btn-link btn-sm">
+        <i class="bi bi-arrow-left me-1"></i>Inicio
+      </a>
+    </div>
+  </div>
+</div>

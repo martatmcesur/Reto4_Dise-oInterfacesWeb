@@ -1,0 +1,80 @@
+<div class="row justify-content-center">
+  <div class="col-lg-8 col-xl-7">
+    <div class="card shadow-lg border-0 rounded-4 p-4 p-lg-5 mt-5">
+      <div class="row align-items-center mb-4">
+        <div class="col-auto">
+          <div class="bg-gradient rounded-circle p-4" 
+               style="width: 80px; height: 80px; background: linear-gradient(135deg, #667eea, #764ba2);">
+            <i class="bi bi-plus-circle-fill text-white" style="font-size: 2rem;"></i>
+          </div>
+        </div>
+        <div class="col">
+          <h1 class="h3 fw-bold mb-1">Nuevo videojuego</h1>
+          <p class="text-muted mb-0">Añade tu próximo juego a la colección</p>
+        </div>
+      </div>
+
+      <form action="/videojuegos/nuevo" method="post">
+        <div class="row g-4">
+          <div class="col-md-6">
+            <label class="form-label fw-500 mb-2">
+              <i class="bi bi-controller me-2 text-primary"></i>Título
+            </label>
+            <input type="text" class="form-control form-control-lg" name="title" 
+                   placeholder="Ej: The Legend of Zelda" required>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label fw-500 mb-2">
+              <i class="bi bi-laptop me-2 text-primary"></i>Plataforma
+            </label>
+            <select name="platform" class="form-select form-select-lg" required>
+              <option value="">Selecciona...</option>
+              <option value="PC">💻 PC</option>
+              <option value="PlayStation">🎮 PlayStation</option>
+              <option value="Xbox">🎮 Xbox</option>
+              <option value="Nintendo Switch">🔴 Nintendo Switch</option>
+              <option value="Mobile">📱 Mobile</option>
+              <option value="Otra">🎯 Otra</option>
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label fw-500 mb-2">
+              <i class="bi bi-tags me-2 text-primary"></i>Género
+            </label>
+            <input type="text" class="form-control form-control-lg" name="genre" 
+                   placeholder="RPG, Acción, Shooter..." required>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label fw-500 mb-2">
+              <i class="bi bi-star me-2 text-primary"></i>Estado inicial
+            </label>
+            <select name="status" class="form-select form-select-lg" required>
+              <option value="">Selecciona...</option>
+              <option value="pendiente">⏳ Pendiente</option>
+              <option value="jugando">▶️ Jugando</option>
+              <option value="completado">✅ Completado</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="d-grid gap-3 d-md-flex mt-5">
+          <button type="submit" class="btn btn-primary btn-lg flex-fill fw-500">
+            <i class="bi bi-check-lg me-2"></i>Guardar juego
+          </button>
+          <a href="/videojuegos" class="btn btn-outline-secondary btn-lg">
+            <i class="bi bi-x-lg me-2"></i>Cancelar
+          </a>
+        </div>
+      </form>
+    </div>
+
+    <div class="text-center mt-4">
+      <a href="/videojuegos" class="btn btn-link btn-lg">
+        <i class="bi bi-arrow-left me-2"></i>Mis juegos
+      </a>
+    </div>
+  </div>
+</div>

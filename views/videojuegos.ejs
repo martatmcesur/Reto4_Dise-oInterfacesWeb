@@ -1,0 +1,117 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1 class="h2 fw-bold">
+    <i class="bi bi-collection-play text-primary me-2"></i>
+    Mis videojuegos (<%= juegos.length %>)
+  </h1>
+  <a href="/videojuegos/nuevo" class="btn btn-primary btn-lg">
+    <i class="bi bi-plus-circle me-2"></i>Añadir juego
+  </a>
+</div>
+
+<!-- Filtros avanzados -->
+<div class="card p-4 mb-4 shadow-lg">
+  <form method="GET">
+    <div class="row g-3 align-items-end">
+      <div class="col-md-3">
+        <label class="form-label fw-500">Plataforma</label>
+        <input type="text" name="plataforma" class="form-control" 
+               placeholder="PC, PS5, Xbox..." value="<%= query.plataforma || '' %>">
+      </div>
+      <div class="col-md-3">
+        <label class="form-label fw-500">Género</label>
+        <input type="text" name="genero" class="form-control" 
+               placeholder="RPG, Acción..." value="<%= query.genero || '' %>">
+      </div>
+      <div class="col-md-2">
+        <label class="form-label fw-500">Estado</label>
+        <select name="estado" class="form-select">
+          <option value="">Todos</option>
+          <option value="pendiente" <%= query.estado === 'pendiente' ? 'selected' : '' %>>Pendiente</option>
+          <option value="jugando" <%= query.estado === 'jugando' ? 'selected' : '' %>>Jugando</option>
+          <option value="completado" <%= query.estado === 'completado' ? 'selected' : '' %>>Completado</option>
+        </select>
+      </div>
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary me-2">
+          <i class="bi bi-funnel me-1"></i>Filtrar
+        </button>
+        <a href="/videojuegos" class="btn btn-outline-secondary">
+          <i class="bi bi-arrow-clockwise me-1"></i>Limpiar
+        </a>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- Tabla responsive -->
+<div class="card shadow-lg overflow-hidden">
+  <div class="table-responsive">
+    <table class="table table-hover mb-0">
+      <thead>
+        <tr>
+          <th><i class="bi bi-controller me-2"></i>Título</th>
+          <th><i class="bi bi-laptop me-2"></i>Plataforma</th>
+          <th><i class="bi bi-tags me-2"></i>Género</th>
+          <th><i class="bi bi-star me-2"></i>Estado</th>
+          <th class="text-center">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if (juegos && juegos.length > 0) { %>
+          <% juegos.forEach(juego => { %>
+            <tr class="align-middle">
+              <td class="fw-500"><%= juego.title %></td>
+              <td><span class="badge bg-light text-dark px-3 py-2"><%= juego.platform %></span></td>
+              <td><%= juego.genre %></td>
+              <td>
+                <span class="status-badge status-<%= juego.status %>">
+                  <%= {pendiente: '⏳ Pendiente', jugando: '▶️ Jugando', completado: '✅ Completado'}[juego.status] || juego.status %>
+                </span>
+              </td>
+<td class="text-center">
+  <div class="btn-group btn-group-sm gap-2" role="group">
+    <a href="/videojuegos/<%= juego.id %>/editar" class="btn btn-editar p-2 rounded-3" title="Editar juego">
+  <i class="bi bi-pencil"></i>
+</a>
+
+    <form action="/videojuegos/<%= juego.id %>/borrar" method="POST" style="display:inline;">
+      <button type="submit" class="btn btn-danger p-2 rounded-3 shadow-sm" 
+              onclick="return confirmBorrar('¿Borrar este juego?')" >
+        <i class="bi bi-trash"></i>
+      </button>
+    </form>
+  </div>
+</td>
+
+
+
+
+
+            </tr>
+          <% }) %>
+        <% } else { %>
+          <tr>
+            <td colspan="5" class="text-center py-5">
+              <i class="bi bi-inbox display-1 text-muted mb-3"></i>
+              <h4 class="text-muted">Tu colección está vacía</h4>
+              <p class="text-muted mb-4">¡Añade tu primer juego!</p>
+              <a href="/videojuegos/nuevo" class="btn btn-primary btn-lg">
+                <i class="bi bi-plus-circle me-2"></i>Primer juego
+              </a>
+            </td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<a href="/" class="btn btn-link mt-4">
+  <i class="bi bi-arrow-left me-2"></i>Volver al inicio
+</a>
+
+<script>
+function confirmBorrar(mensaje) {
+  return confirm(mensaje);
+}
+</script>

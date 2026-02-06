@@ -1,0 +1,75 @@
+<div class="row justify-content-center">
+  <div class="col-lg-8 col-xl-7">
+    <div class="card shadow-lg border-0 rounded-4 p-4 p-lg-5 mt-5">
+      <div class="row align-items-center mb-4">
+        <div class="col-auto">
+          <div class="bg-gradient rounded-circle p-4" 
+               style="width: 80px; height: 80px; background: linear-gradient(135deg, #667eea, #764ba2);">
+            <i class="bi bi-pencil-square text-white" style="font-size: 2rem;"></i>
+          </div>
+        </div>
+        <div class="col">
+          <h1 class="h3 fw-bold mb-1">Editar <%= juego.title %></h1>
+          <p class="text-muted mb-0">
+            <i class="bi bi-<%= {pendiente: 'clock', jugando: 'play-circle', completado: 'check-circle'}[juego.status] %> me-1"></i>
+            <%= {pendiente: 'Pendiente', jugando: 'Jugando', completado: 'Completado'}[juego.status] %>
+          </p>
+        </div>
+      </div>
+
+      <form action="/videojuegos/<%= juego.id %>/editar" method="POST">
+        <div class="row g-4">
+          <div class="col-md-6">
+            <label class="form-label fw-500 mb-2">
+              <i class="bi bi-controller me-2 text-primary"></i>Título
+            </label>
+            <input type="text" class="form-control form-control-lg" name="title" 
+                   value="<%= juego.title %>" required>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label fw-500 mb-2">
+              <i class="bi bi-laptop me-2 text-primary"></i>Plataforma
+            </label>
+            <input type="text" class="form-control form-control-lg" name="platform" 
+                   value="<%= juego.platform %>" required>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label fw-500 mb-2">
+              <i class="bi bi-tags me-2 text-primary"></i>Género
+            </label>
+            <input type="text" class="form-control form-control-lg" name="genre" 
+                   value="<%= juego.genre %>" required>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label fw-500 mb-2">
+              <i class="bi bi-star me-2 text-primary"></i>Estado
+            </label>
+            <select name="status" class="form-select form-select-lg" required>
+              <option value="pendiente" <%= juego.status === 'pendiente' ? 'selected' : '' %>>⏳ Pendiente</option>
+              <option value="jugando" <%= juego.status === 'jugando' ? 'selected' : '' %>>▶️ Jugando</option>
+              <option value="completado" <%= juego.status === 'completado' ? 'selected' : '' %>>✅ Completado</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="d-grid gap-3 d-md-flex mt-5">
+          <button type="submit" class="btn btn-primary btn-lg flex-fill fw-500">
+            <i class="bi bi-check-lg me-2"></i>Guardar cambios
+          </button>
+          <a href="/videojuegos" class="btn btn-outline-secondary btn-lg">
+            <i class="bi bi-x-lg me-2"></i>Cancelar
+          </a>
+        </div>
+      </form>
+    </div>
+
+    <div class="text-center mt-4">
+      <a href="/videojuegos" class="btn btn-link btn-lg">
+        <i class="bi bi-arrow-left me-2"></i>Mis juegos
+      </a>
+    </div>
+  </div>
+</div>
